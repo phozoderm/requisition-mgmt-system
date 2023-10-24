@@ -1,0 +1,20 @@
+<div class="row progress-bar-div mb-5">
+  <div class="col progress-bar-item">
+    Preparation
+  </div>
+  <div class="col progress-bar-item" [ngClass]='stage<1 ? "progress-bar-disabled-item": ""'>
+    Pricing
+  </div>
+  <div class="col progress-bar-item" [ngClass]='stage<2 ? "progress-bar-disabled-item": ""'>
+    Quotation
+  </div>
+  <div class="col progress-bar-item" [ngClass]='stage<3 ? "progress-bar-disabled-item": ""'>
+    Order
+  </div>
+  <div class="col progress-bar-item" [ngClass]='stage<4 ? "progress-bar-disabled-item": ""'>
+    Finance
+  </div>
+  <div class="col progress-bar-item" [ngClass]='stage<5 ? "progress-bar-disabled-item": ""'>
+    Completed
+  </div>
+</div>

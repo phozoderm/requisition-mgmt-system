@@ -1,0 +1,170 @@
+
+.btn-outline-primary {
+  background-color: #e6e9eb;
+  height: 40px;
+  color: #333333;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  min-width: 140px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e6e9eb;
+  color: black;
+  border: 1px solid #e6e6e6;
+}
+
+.dropdown-item:hover {
+  background-color: #e6e9eb;
+  color: black;
+}
+
+.card-text {
+  font-size: 18px;
+}
+
+.card-title {
+  font-size: 14px;
+  color: #7D7C7C;
+  margin: 0;
+}
+
+.card-header {
+  color: #ffffff;
+  background-color: #198753;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  height: 50px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+.btn-secondary:hover {
+  background-color: #565e64;
+  color: white;
+}
+
+.btn-secondary i {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.btn-success {
+  display: flex;
+  align-items: center;
+}
+
+.bi-search {
+  color: tomato;
+}
+
+.bi-cash-stack {
+  color: green;
+}
+
+.bi-star-fill {
+  color: #ffc000;
+}
+
+.bi-database-fill-add {
+  color: gold;
+}
+
+.bi-percent {
+  color: mediumspringgreen;
+}
+
+.bi-plus-circle-fill {
+  color: green;
+}
+
+.bi-check-circle-fill {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.page-header-div {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin-top: 80px;
+  align-items: center;
+  color: #333333;
+}
+
+.page-header-div i {
+  font-size: 60px;
+  margin-right: 20px;
+  color: #7D7C7C;
+}
+
+.container-div {
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.items-table {
+  display: block;
+  height: 370px;
+  overflow-y: scroll;
+}
+
+.table-buttons {
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.table-buttons i {
+  font-size: 20px;
+}
+
+.bi-paperclip {
+  color: #609966;
+}
+
+.bi-trash3-fill {
+  color: #fd4242;
+}
+
+.table-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.project-detail-div {
+  margin-bottom: 30px;
+}
+.toast-div{
+  color: #ffffff;
+  background-color: #198753;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 0.5em;
+}
+.toast-div-error{
+  background-color: #fd4242;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1100px;
+  }
+}

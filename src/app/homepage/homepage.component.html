@@ -1,0 +1,168 @@
+<div class="container">
+  <div class="page-header-div">
+    <i class="bi bi-arrow-right-circle"></i>
+    <h1>Requisition Management System</h1>
+  </div>
+  <div class="container-div">
+    <div class="row mb-5">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-primary" id="dropdownVessel" ngbDropdownToggle>
+            {{selectedVessel.name}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownVessel">
+            <button *ngFor="let vessel of vesselList" ngbDropdownItem
+                    (click)="onVesselClick(vessel)">{{vessel.name}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-primary" id="dropdownProject" ngbDropdownToggle>
+            {{selectedProject.name}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownProject">
+            <button *ngFor="let project of selectedVessel.projects" ngbDropdownItem
+                    (click)="onProjectClick(project)">{{project.name}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="col text-end">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-primary" id="dropdownRequisition" ngbDropdownToggle>
+            {{selectedRequisition.name}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownRequisition">
+            <button *ngFor="let requisition of selectedProject.requisitions" ngbDropdownItem
+                    (click)="onRequisitionClick(requisition)">{{requisition.name}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="card">
+          <h5 class="card-header text-start">Project Detail</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 project-detail-div" *ngFor="let field of selectedProject.fields">
+                <h6 class="card-title">{{field.title}}</h6>
+                <p class="card-text">{{field.value}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-progress-indicator [stage]="selectedProject.stage"></app-progress-indicator>
+    <div class="row mb-2">
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary"><i class="bi bi-search"></i> Generate Enquiry</button>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary"><i class="bi bi-cash-stack"></i> Generate Quotation</button>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary"><i class="bi bi-star-fill"></i> Select Best Suppliers</button>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary" (click)="onAddAmountClick(modalContent)"><i
+          class="bi bi-database-fill-add"></i> Add Amount
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary" (click)="onAddPercentageClick(modalContent)"><i
+          class="bi bi-percent"></i> Add Percentage
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <button type="button" class="btn btn-secondary"><i class="bi bi-plus-circle-fill"></i> Add New Item</button>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col table-responsive">
+        <table class="table table-striped items-table">
+          <thead>
+          <tr>
+            <th scope="col" *ngFor="let header of tableHeaders" (click)="onTableHeaderClick(header)">
+              {{header}}
+              <i class="bi bi-sort-alpha-down" *ngIf="header === 'Item Code' && itemCodeSortDirection === 'asc'"></i>
+              <i class="bi bi-sort-alpha-up" *ngIf="header === 'Item Code' && itemCodeSortDirection === 'des'"></i>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of selectedRequisition.items ; index as i">
+            <th scope="row"> {{i + 1}} </th>
+            <td>{{item.itemCode}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.unit}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity * item.price}}</td>
+            <td>{{item.remark}}</td>
+            <td>{{item.cost}}</td>
+            <td>{{item.selectedSupplier}}</td>
+            <td>{{item.supplierRemark}}</td>
+            <td>
+              <button type="button" class="table-buttons">
+                <i class="bi bi-paperclip"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="table-buttons">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </td>
+            <td>
+              <input class="table-checkbox mt-2" type="checkbox" (click)="onItemSelected(item)" [checked]="item.selected">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-9"></div>
+      <div class="col-3">
+        <button type="button" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Mark Pricing Completed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label
+          for="valueInput">{{modalOpenEvent === 'addAmount' ? 'Amount' : modalOpenEvent === 'addPercentage' ? 'Percentage %' : ''}}</label>
+        <div class="input-group">
+          <input
+            (change)="onModalInputChange($event)"
+            [value]="modalInput"
+            class="form-control"
+            id="valueInput"
+            type="number"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()" [disabled]="Number(modalInput) <= 0">Save</button>
+  </div>
+</ng-template>
+
+<div>
+  <ngb-toast class="toast-div" [ngClass]="isToastError ? 'toast-div-error': ''" *ngIf="isToastShown"
+             header="Requisition Management System" [autohide]="true" (hidden)="isToastShown=false">
+    {{toastMessage}}
+  </ngb-toast>
+</div>
